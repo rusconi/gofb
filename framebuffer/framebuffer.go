@@ -57,9 +57,9 @@ func _ShowCursor() {
 	fmt.Printf("\033[?25h")
 }
 
-func (f *Framebuffer)Init()  {
+func (f *Framebuffer)Init(device string)  {
 	_HideCursor()
-	dev_file:=C.CString("/dev/fb0")
+	dev_file:=C.CString(device)
 	fd,err:=C.OpenFrameBuffer(dev_file)
 	C.free(unsafe.Pointer(dev_file))
 
